@@ -25,6 +25,15 @@ export LIGHT='\033[0;37m'
 export NC='\033[0m'
 export BLUEBG='\033[44m';
 
+# // Export Banner Status Information
+export ERROR="[${RED} ERROR ${NC}]";
+export INFO="[${YELLOW} INFO ${NC}]";
+export OKEY="[${GREEN} OKEY ${NC}]";
+export PENDING="[${YELLOW} PENDING ${NC}]";
+export SEND="[${YELLOW} SEND ${NC}]";
+export RECEIVE="[${YELLOW} RECEIVE ${NC}]";
+export RED_BG='\e[41m';
+
 # // Export Align
 export BOLD="\e[1m";
 export WARNING="${RED}\e[5m";
@@ -37,3 +46,26 @@ else
 clear
 scvpn-error
 fi
+
+DATE=$(date -d +1day +%Y-%m-%d)
+EXP=$(curl -sS https://raw.githubusercontent.com/3xplx/regIPvps/main/iplite | grep $MYIP | awk '{print $3}')
+export DATENOW="$DATE";
+export EXP1="$EXP";
+if [[ $DATENOW < $EXP1 ]]; then
+SKIP=true;
+else
+clear
+scvpn-error
+fi
+
+clear
+echo -e "$BLUE┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
+echo -e "$BLUE┃${NC} ${BLUEBG}              • VMESS PANEL MENU •               ${NC} $BLUE┃$NC"
+echo -e "$BLUE┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
+echo -e "$BLUE┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
+echo -e "$BLUE┃$NC   ${BLUE}[01]${NC} • ADD VMESS        ${BLUE}[03]${NC} • DELETE VMESS${NC}     $BLUE┃$NC"
+echo -e "$BLUE┃$NC   ${BLUE}[02]${NC} • RENEW VMESS${NC}      ${BLUE}[04]${NC} • USER ONLINE      $BLUE┃$NC"
+echo -e "$BLUE┃$NC                                                   $BLUE┃$NC"
+echo -e "$BLUE┃$NC   ${BLUE}[00]${NC} • GO BACK${NC}                                  $BLUE┃$NC"
+echo -e "$BLUE┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
+echo -e "$BLUE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
